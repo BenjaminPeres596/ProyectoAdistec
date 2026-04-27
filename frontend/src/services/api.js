@@ -32,3 +32,7 @@ export function getStats() {
 export function getExternalTeams(params = {}) {
   return request(`/api/teams/external${buildQuery(params)}`).then((payload) => payload.data ?? []);
 }
+
+export function getCountryOptions() {
+  return request('/api/teams/countries').then((payload) => payload.data ?? []);
+}

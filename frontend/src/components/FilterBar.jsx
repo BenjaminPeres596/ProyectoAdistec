@@ -1,4 +1,11 @@
-function FilterBar({ filters, onChange, externalFilters, onExternalChange, onFetchExternal }) {
+function FilterBar({
+  filters,
+  onChange,
+  externalFilters,
+  onExternalChange,
+  onFetchExternal,
+  countryOptions = [],
+}) {
   function handleInputChange(event) {
     const { name, value } = event.target;
     onChange((prev) => ({ ...prev, [name]: value }));
@@ -25,14 +32,13 @@ function FilterBar({ filters, onChange, externalFilters, onExternalChange, onFet
 
       <div className="filter-bar__field">
         <label htmlFor="country">Pais</label>
-        <input
-          id="country"
-          name="country"
-          type="text"
-          value={filters.country}
-          onChange={handleInputChange}
-          placeholder="Ej: Argentina"
-        />
+        <select id="country" name="country" value={filters.country} onChange={handleInputChange}>
+          {countryOptions.map((country) => (
+            <option key={country || 'all'} value={country}>
+              {country || 'Todos'}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="filter-bar__field">
@@ -50,18 +56,6 @@ function FilterBar({ filters, onChange, externalFilters, onExternalChange, onFet
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
-      </div>
-
-      <div className="filter-bar__field">
-        <label htmlFor="externalCountry">Pais externo</label>
-        <input
-          id="externalCountry"
-          name="country"
-          type="text"
-          value={externalFilters.country}
-          onChange={handleExternalInputChange}
-          placeholder="Ej: Argentina"
-        />
       </div>
 
       <div className="filter-bar__field">
