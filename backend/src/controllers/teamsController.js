@@ -42,7 +42,10 @@ async function listExternalTeams(req, res) {
 				? rawCountry
 				: undefined;
 		const sport = req.query.sport || 'Soccer';
-		const teams = await getExternalTeams({ country, sport });
+		const rawSearch = req.query.search;
+		const search =
+			typeof rawSearch === 'string' && rawSearch.trim() !== '' ? rawSearch.trim() : undefined;
+		const teams = await getExternalTeams({ country, sport, search });
 
 		return res.json({
 			total: teams.length,

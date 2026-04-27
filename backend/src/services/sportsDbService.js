@@ -16,6 +16,17 @@ function buildSearchAllTeamsUrl({ country, sport = 'Soccer' } = {}) {
 	return `${endpoint}?${params.toString()}`;
 }
 
+function buildSearchTeamsByNameUrl(name) {
+	const baseUrl = process.env.SPORTSDB_BASE_URL;
+	const apiKey = process.env.SPORTSDB_API_KEY;
+
+	if (!baseUrl || !apiKey) {
+		throw new Error('Faltan variables de entorno de TheSportsDB');
+	}
+
+	return `${baseUrl}/${apiKey}/searchteams.php?t=${encodeURIComponent(name)}`;
+}
+
 function buildAllCountriesUrl() {
 	const baseUrl = process.env.SPORTSDB_BASE_URL;
 	const apiKey = process.env.SPORTSDB_API_KEY;
@@ -39,16 +50,29 @@ function normalizeTeam(team) {
 	};
 }
 
-async function getExternalTeams({ country, sport } = {}) {
-	const url = buildSearchAllTeamsUrl({ country, sport });
-	const response = await fetch(url);
+async function getExternalTeams({ country, sport, search } = {}) {
+	let teams;
 
-	if (!response.ok) {
-		throw new Error(`TheSportsDB respondio con estado ${response.status}`);
+	if (!country && search) {
+		// Busqueda global por nombre
+		const url = buildSearchTeamsByNameUrl(search);
+		const response = await fetch(url);
+		if (!response.ok) throw new Error(`TheSportsDB respondio con estado ${response.status}`);
+		const payload = await response.json();
+		teams = Array.isArray(payload.teams) ? payload.teams : [];
+	} else {
+		// Busqueda por pais (con filtro de nombre opcional client-side)
+		const url = buildSearchAllTeamsUrl({ country, sport });
+		const response = await fetch(url);
+		if (!response.ok) throw new Error(`TheSportsDB respondio con estado ${response.status}`);
+		const payload = await response.json();
+		teams = Array.isArray(payload.teams) ? payload.teams : [];
+
+		if (search) {
+			const query = search.toLowerCase();
+			teams = teams.filter((t) => t.strTeam?.toLowerCase().includes(query));
+		}
 	}
-
-	const payload = await response.json();
-	const teams = Array.isArray(payload.teams) ? payload.teams : [];
 
 	return teams.map(normalizeTeam);
 }
