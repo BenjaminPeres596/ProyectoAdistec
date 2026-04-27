@@ -11,13 +11,13 @@ export function useTeams(filters = {}) {
     setError(null);
     try {
       const data = await getTeams(filters);
-      setTeams(data.teams ?? data);
+      setTeams(Array.isArray(data) ? data : []);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  }, [JSON.stringify(filters)]);
+  }, [filters]);
 
   useEffect(() => {
     fetchTeams();

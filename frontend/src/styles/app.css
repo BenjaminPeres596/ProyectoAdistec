@@ -3,3 +3,101 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.home {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.home__title {
+  font-size: 2rem;
+}
+
+.home__status {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #e8edf3;
+}
+
+.home__status--error {
+  background-color: #ffe5e5;
+  color: #821313;
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.filter-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.filter-bar__field input,
+.filter-bar__field select {
+  border: 1px solid #c7d1dc;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+}
+
+.stats-panel {
+  background: #f3f7ff;
+  border: 1px solid #d6e1f0;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.stats-panel__title {
+  margin-bottom: 0.5rem;
+}
+
+.stats-panel__subtitle {
+  margin: 0.9rem 0 0.4rem;
+}
+
+.stats-panel__item span {
+  font-weight: 600;
+}
+
+.stats-panel__list {
+  list-style: inside;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.team-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.team-card {
+  border: 1px solid #d9e0e8;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.team-card__badge {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.team-card__info {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.team-card__name {
+  font-size: 1.1rem;
+}
+
+.team-card__detail span {
+  font-weight: 600;
+}
