@@ -2,12 +2,14 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const teamsRouter = require('./routes/teams');
 
 const app = express();
 
 // Middlewares globales
 app.use(cors());
 app.use(express.json());
+app.use('/api/teams', teamsRouter);
 
 // Endpoints base
 app.get('/', (req, res) => {
