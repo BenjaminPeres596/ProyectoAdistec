@@ -1,0 +1,182 @@
+[
+	{
+		"id": 1,
+		"name": "Boca Juniors",
+		"country": "Argentina",
+		"league": "Liga Profesional Argentina",
+		"founded": 1905,
+		"stadium": "La Bombonera",
+		"favoriteScore": 10
+	},
+	{
+		"id": 2,
+		"name": "River Plate",
+		"country": "Argentina",
+		"league": "Liga Profesional Argentina",
+		"founded": 1901,
+		"stadium": "Monumental",
+		"favoriteScore": 0
+	},
+	{
+		"id": 3,
+		"name": "Racing Club",
+		"country": "Argentina",
+		"league": "Liga Profesional Argentina",
+		"founded": 1903,
+		"stadium": "Presidente Peron",
+		"favoriteScore": 2
+	},
+	{
+		"id": 4,
+		"name": "San Lorenzo",
+		"country": "Argentina",
+		"league": "Liga Profesional Argentina",
+		"founded": 1908,
+		"stadium": "Pedro Bidegain",
+		"favoriteScore": 1
+	},
+	{
+		"id": 5,
+		"name": "Flamengo",
+		"country": "Brazil",
+		"league": "Brasileirao Serie A",
+		"founded": 1895,
+		"stadium": "Maracana",
+		"favoriteScore": 8
+	},
+	{
+		"id": 6,
+		"name": "Palmeiras",
+		"country": "Brazil",
+		"league": "Brasileirao Serie A",
+		"founded": 1914,
+		"stadium": "Allianz Parque",
+		"favoriteScore": 8
+	},
+	{
+		"id": 7,
+		"name": "Corinthians",
+		"country": "Brazil",
+		"league": "Brasileirao Serie A",
+		"founded": 1910,
+		"stadium": "Neo Quimica Arena",
+		"favoriteScore": 7
+	},
+	{
+		"id": 8,
+		"name": "Real Madrid",
+		"country": "Spain",
+		"league": "La Liga",
+		"founded": 1902,
+		"stadium": "Santiago Bernabeu",
+		"favoriteScore": 9
+	},
+	{
+		"id": 9,
+		"name": "Barcelona",
+		"country": "Spain",
+		"league": "La Liga",
+		"founded": 1899,
+		"stadium": "Estadi Olimpic Lluis Companys",
+		"favoriteScore": 9
+	},
+	{
+		"id": 10,
+		"name": "Atletico Madrid",
+		"country": "Spain",
+		"league": "La Liga",
+		"founded": 1903,
+		"stadium": "Metropolitano",
+		"favoriteScore": 8
+	},
+	{
+		"id": 11,
+		"name": "Manchester City",
+		"country": "England",
+		"league": "Premier League",
+		"founded": 1880,
+		"stadium": "Etihad Stadium",
+		"favoriteScore": 8
+	},
+	{
+		"id": 12,
+		"name": "Liverpool",
+		"country": "England",
+		"league": "Premier League",
+		"founded": 1892,
+		"stadium": "Anfield",
+		"favoriteScore": 9
+	},
+	{
+		"id": 13,
+		"name": "Arsenal",
+		"country": "England",
+		"league": "Premier League",
+		"founded": 1886,
+		"stadium": "Emirates Stadium",
+		"favoriteScore": 8
+	},
+	{
+		"id": 14,
+		"name": "Manchester United",
+		"country": "England",
+		"league": "Premier League",
+		"founded": 1878,
+		"stadium": "Old Trafford",
+		"favoriteScore": 8
+	},
+	{
+		"id": 15,
+		"name": "Inter",
+		"country": "Italy",
+		"league": "Serie A",
+		"founded": 1908,
+		"stadium": "San Siro",
+		"favoriteScore": 8
+	},
+	{
+		"id": 16,
+		"name": "Milan",
+		"country": "Italy",
+		"league": "Serie A",
+		"founded": 1899,
+		"stadium": "San Siro",
+		"favoriteScore": 8
+	},
+	{
+		"id": 17,
+		"name": "Juventus",
+		"country": "Italy",
+		"league": "Serie A",
+		"founded": 1897,
+		"stadium": "Allianz Stadium",
+		"favoriteScore": 8
+	},
+	{
+		"id": 18,
+		"name": "Bayern Munich",
+		"country": "Germany",
+		"league": "Bundesliga",
+		"founded": 1900,
+		"stadium": "Allianz Arena",
+		"favoriteScore": 9
+	},
+	{
+		"id": 19,
+		"name": "Borussia Dortmund",
+		"country": "Germany",
+		"league": "Bundesliga",
+		"founded": 1909,
+		"stadium": "Signal Iduna Park",
+		"favoriteScore": 8
+	},
+	{
+		"id": 20,
+		"name": "Paris Saint-Germain",
+		"country": "France",
+		"league": "Ligue 1",
+		"founded": 1970,
+		"stadium": "Parc des Princes",
+		"favoriteScore": 7
+	}
+]
