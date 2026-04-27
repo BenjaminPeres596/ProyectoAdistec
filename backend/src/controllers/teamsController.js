@@ -1,4 +1,5 @@
 const { getProcessedTeams, getTeamById } = require('../services/teamsService');
+const { getExternalTeams } = require('../services/sportsDbService');
 
 async function listTeams(req, res) {
 	try {
@@ -33,7 +34,26 @@ async function getTeam(req, res) {
 	}
 }
 
+async function listExternalTeams(req, res) {
+	try {
+		const country = req.query.country || 'Argentina';
+		const sport = req.query.sport || 'Soccer';
+		const teams = await getExternalTeams({ country, sport });
+
+		return res.json({
+			total: teams.length,
+			data: teams,
+		});
+	} catch (error) {
+		return res.status(500).json({
+			message: 'Error al consumir TheSportsDB',
+			error: error.message,
+		});
+	}
+}
+
 module.exports = {
 	listTeams,
 	getTeam,
+	listExternalTeams,
 };
