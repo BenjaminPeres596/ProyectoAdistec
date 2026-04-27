@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const teamsRouter = require('./routes/teams');
+const statsRouter = require('./routes/stats');
 
 const app = express();
 
@@ -10,10 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/teams', teamsRouter);
+app.use('/api/stats', statsRouter);
 
 // Endpoints base
 app.get('/', (req, res) => {
-	res.json({ message: 'Football API running' });
+	res.json({ message: 'API de futbol en ejecucion' });
 });
 
 app.get('/api/health', (req, res) => {
@@ -24,7 +26,7 @@ app.get('/api/health', (req, res) => {
 if (require.main === module) {
 	const PORT = process.env.PORT || 3000;
 	app.listen(PORT, () => {
-		console.log(`Server running on http://localhost:${PORT}`);
+		console.log(`Servidor corriendo en http://localhost:${PORT}`);
 	});
 }
 
