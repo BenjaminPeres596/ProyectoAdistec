@@ -1,7 +1,12 @@
-function FilterBar({ filters, onChange }) {
+function FilterBar({ filters, onChange, externalFilters, onExternalChange, onFetchExternal }) {
   function handleInputChange(event) {
     const { name, value } = event.target;
     onChange((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function handleExternalInputChange(event) {
+    const { name, value } = event.target;
+    onExternalChange((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
@@ -45,6 +50,36 @@ function FilterBar({ filters, onChange }) {
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
+      </div>
+
+      <div className="filter-bar__field">
+        <label htmlFor="externalCountry">Pais externo</label>
+        <input
+          id="externalCountry"
+          name="country"
+          type="text"
+          value={externalFilters.country}
+          onChange={handleExternalInputChange}
+          placeholder="Ej: Argentina"
+        />
+      </div>
+
+      <div className="filter-bar__field">
+        <label htmlFor="externalSport">Deporte externo</label>
+        <input
+          id="externalSport"
+          name="sport"
+          type="text"
+          value={externalFilters.sport}
+          onChange={handleExternalInputChange}
+          placeholder="Ej: Soccer"
+        />
+      </div>
+
+      <div className="filter-bar__field filter-bar__field--button">
+        <button type="button" className="filter-bar__button" onClick={onFetchExternal}>
+          Buscar externos
+        </button>
       </div>
     </section>
   );
