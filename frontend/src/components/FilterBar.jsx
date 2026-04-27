@@ -1,19 +1,12 @@
 function FilterBar({
   filters,
   onChange,
-  externalFilters,
-  onExternalChange,
   onFetchExternal,
   countryOptions = [],
 }) {
   function handleInputChange(event) {
     const { name, value } = event.target;
     onChange((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function handleExternalInputChange(event) {
-    const { name, value } = event.target;
-    onExternalChange((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
@@ -56,18 +49,6 @@ function FilterBar({
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
-      </div>
-
-      <div className="filter-bar__field">
-        <label htmlFor="externalSport">Deporte externo</label>
-        <input
-          id="externalSport"
-          name="sport"
-          type="text"
-          value={externalFilters.sport}
-          onChange={handleExternalInputChange}
-          placeholder="Ej: Soccer"
-        />
       </div>
 
       <div className="filter-bar__field filter-bar__field--button">

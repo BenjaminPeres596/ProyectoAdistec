@@ -25,6 +25,11 @@
   color: #821313;
 }
 
+.home__status--info {
+  background-color: #e8f0fe;
+  color: #1a4a8a;
+}
+
 .section-header {
   display: flex;
   align-items: center;
@@ -95,6 +100,12 @@
 
 .stats-panel__item span {
   font-weight: 600;
+}
+
+.stats-panel__breakdown {
+  font-weight: 400;
+  color: #5a7a9a;
+  font-size: 0.9em;
 }
 
 .stats-panel__list {
