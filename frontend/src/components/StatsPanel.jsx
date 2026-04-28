@@ -21,7 +21,7 @@ function StatsPanel({ stats }) {
         <article className="stats-panel__metric-card">
           <p className="stats-panel__label">Promedio favoritos{hasApi ? ' JSON' : ''}</p>
           <p className="stats-panel__value">{stats.averageFavoriteScore}</p>
-          <p className="stats-panel__breakdown">Calculado solo con equipos locales</p>
+          <p className="stats-panel__breakdown">Calculado solo con equipos JSON</p>
         </article>
 
         <article className="stats-panel__metric-card">
