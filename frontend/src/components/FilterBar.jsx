@@ -1,7 +1,6 @@
 function FilterBar({
   filters,
   onChange,
-  onFetchExternal,
   countryOptions = [],
 }) {
   function handleInputChange(event) {
@@ -13,19 +12,27 @@ function FilterBar({
     <section className="filter-bar" aria-label="Filtros de equipos">
       <div className="filter-bar__intro">
         <h2 className="filter-bar__title">Filtros</h2>
-        <p className="filter-bar__copy">Ajusta los datos locales y lanza la consulta a la API cuando lo necesites.</p>
+        <p className="filter-bar__copy">Ajusta la vista local y externa desde estos filtros.</p>
       </div>
 
-      <div className="filter-bar__field">
+      <div className="filter-bar__field filter-bar__field--search">
         <label htmlFor="search">Buscar equipo</label>
-        <input
-          id="search"
-          name="search"
-          type="text"
-          value={filters.search}
-          onChange={handleInputChange}
-          placeholder="Ej: Boca"
-        />
+        <div className="filter-bar__search-wrap">
+          <span className="filter-bar__search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
+          <input
+            id="search"
+            name="search"
+            type="text"
+            value={filters.search}
+            onChange={handleInputChange}
+            placeholder="Ej: Arsenal, Boca, Premier League"
+          />
+        </div>
       </div>
 
       <div className="filter-bar__field">
@@ -54,12 +61,6 @@ function FilterBar({
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
-      </div>
-
-      <div className="filter-bar__field filter-bar__field--button">
-        <button type="button" className="filter-bar__button" onClick={onFetchExternal}>
-          Buscar API
-        </button>
       </div>
     </section>
   );

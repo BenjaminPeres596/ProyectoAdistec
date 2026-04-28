@@ -51,6 +51,9 @@ function Home() {
         favoriteScore: team.favoriteScore || 0,
       }));
 
+    const topFavoriteTeam = topFavoriteTeams[0] || null;
+    const totalCountries = Object.keys(teamsByCountry).length;
+
     return {
       totalTeams,
       totalJsonTeams,
@@ -58,8 +61,14 @@ function Home() {
       averageFavoriteScore,
       teamsByCountry,
       topFavoriteTeams,
+      topFavoriteTeam,
+      totalCountries,
     };
   }, [teams, externalTeams]);
+
+  const activeFilterParts = useMemo(() => {
+    return [filters.search ? `"${filters.search}"` : null, filters.country || null].filter(Boolean);
+  }, [filters.country, filters.search]);
 
   const handleFetchExternal = useCallback(async () => {
     if (!filters.country) {
@@ -108,9 +117,16 @@ function Home() {
     <main className="home">
       <header className="home__hero">
         <div className="home__hero-inner">
-          <p className="home__eyebrow">Explorador de datos</p>
-          <h1 className="home__title">Equipos de Futbol</h1>
-          <p className="home__subtitle">Busca, filtra y explora equipos desde archivos JSON y una API externa.</p>
+          <div className="home__brand">
+            <div>
+              <h1 className="home__title">Equipos de Futbol</h1>
+            </div>
+
+            <div className="home__hero-badges" aria-label="Tecnologias usadas">
+              <span className="home__hero-badge home__hero-badge--green">Node.js</span>
+              <span className="home__hero-badge home__hero-badge--amber">Express</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -118,15 +134,37 @@ function Home() {
         <FilterBar
           filters={filters}
           onChange={setFilters}
-          onFetchExternal={handleFetchExternal}
           countryOptions={countryOptions}
         />
+
+        <section className="home__context-bar" aria-label="Resumen de vista actual">
+          <div className="home__context-tabs">
+            <span className="home__context-pill home__context-pill--neutral">
+              Todos <strong>{dynamicStats.totalTeams}</strong>
+            </span>
+            <span className="home__context-pill home__context-pill--blue">
+              JSON <strong>{dynamicStats.totalJsonTeams}</strong>
+            </span>
+            <span className="home__context-pill home__context-pill--amber">
+              API <strong>{dynamicStats.totalApiTeams}</strong>
+            </span>
+          </div>
+
+          <div className="home__context-meta">
+            <span className="home__results-count">
+              {dynamicStats.totalTeams} equipo{dynamicStats.totalTeams === 1 ? '' : 's'} en vista
+            </span>
+            {activeFilterParts.length > 0 && (
+              <span className="home__active-filter">{activeFilterParts.join(' · ')}</span>
+            )}
+          </div>
+        </section>
 
         <section className="section stats-wrap" aria-label="Estadisticas generales">
           <div className="section-header">
             <div>
               <h2 className="section-title">Resumen general</h2>
-              <p className="section-copy">Totales combinados, favoritos del JSON y distribucion por pais.</p>
+              <p className="section-copy">KPIs combinados, favoritos del JSON y distribucion por pais.</p>
             </div>
           </div>
           <StatsPanel stats={dynamicStats} />
@@ -138,6 +176,8 @@ function Home() {
               <h2 className="section-title">Equipos JSON</h2>
               <p className="section-copy">Datos locales filtrados en tiempo real desde el archivo fuente.</p>
             </div>
+
+            <span className="section-chip section-chip--blue">{teams.length} en vista</span>
           </div>
 
           {loading && <p className="home__status">Cargando equipos...</p>}
@@ -160,6 +200,8 @@ function Home() {
               <h2 className="section-title">Equipos API</h2>
               <p className="section-copy">Resultados traidos desde TheSportsDB segun pais y nombre.</p>
             </div>
+
+            <span className="section-chip section-chip--amber">{externalTeams.length} en vista</span>
           </div>
 
           {externalLoading && <p className="home__status">Buscando equipos API...</p>}
@@ -183,6 +225,7 @@ function Home() {
             </div>
           )}
         </section>
+
       </div>
     </main>
   );
