@@ -8,36 +8,47 @@ function StatsPanel({ stats }) {
 
   return (
     <section className="stats-panel" aria-label="Resumen estadistico">
-      <h2 className="stats-panel__title">Resumen</h2>
-      <p className="stats-panel__item">
-        <span>Total equipos:</span> {stats.totalTeams}
-        {hasApi && (
-          <span className="stats-panel__breakdown">
-            &nbsp;({stats.totalJsonTeams} JSON / {stats.totalApiTeams} API)
-          </span>
-        )}
-      </p>
-      <p className="stats-panel__item">
-        <span>Promedio favoritos{hasApi ? ' (JSON)' : ''}:</span> {stats.averageFavoriteScore}
-      </p>
+      <div className="stats-panel__metrics">
+        <article className="stats-panel__metric-card">
+          <p className="stats-panel__label">Total equipos</p>
+          <p className="stats-panel__value">{stats.totalTeams}</p>
+          {hasApi && (
+            <p className="stats-panel__breakdown">{stats.totalJsonTeams} JSON / {stats.totalApiTeams} API</p>
+          )}
+        </article>
 
-      <h3 className="stats-panel__subtitle">Top 5 favoritos{hasApi ? ' (JSON)' : ''}</h3>
-      <ul className="stats-panel__list">
-        {stats.topFavoriteTeams?.map((team) => (
-          <li key={team.id}>
-            {team.name} ({team.favoriteScore}/10)
-          </li>
-        ))}
-      </ul>
+        <article className="stats-panel__metric-card">
+          <p className="stats-panel__label">Promedio favoritos{hasApi ? ' JSON' : ''}</p>
+          <p className="stats-panel__value">{stats.averageFavoriteScore}</p>
+          <p className="stats-panel__breakdown">Calculado solo con equipos locales</p>
+        </article>
+      </div>
 
-      <h3 className="stats-panel__subtitle">Equipos por pais</h3>
-      <ul className="stats-panel__list">
-        {countryRows.map(([country, total]) => (
-          <li key={country}>
-            {country}: {total}
-          </li>
-        ))}
-      </ul>
+      <div className="stats-panel__content">
+        <div>
+          <h3 className="stats-panel__subtitle">Top 5 favoritos{hasApi ? ' JSON' : ''}</h3>
+          <ul className="stats-panel__list">
+            {stats.topFavoriteTeams?.map((team) => (
+              <li key={team.id}>
+                <span>{team.name}</span>
+                <strong>{team.favoriteScore}/10</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="stats-panel__subtitle">Equipos por pais</h3>
+          <ul className="stats-panel__list">
+            {countryRows.map(([country, total]) => (
+              <li key={country}>
+                <span>{country}</span>
+                <strong>{total}</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   );
 }

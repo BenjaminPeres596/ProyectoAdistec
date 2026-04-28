@@ -11,6 +11,11 @@ function FilterBar({
 
   return (
     <section className="filter-bar" aria-label="Filtros de equipos">
+      <div className="filter-bar__intro">
+        <h2 className="filter-bar__title">Filtros</h2>
+        <p className="filter-bar__copy">Ajusta los datos locales y lanza la consulta a la API cuando lo necesites.</p>
+      </div>
+
       <div className="filter-bar__field">
         <label htmlFor="search">Buscar equipo</label>
         <input
@@ -53,7 +58,7 @@ function FilterBar({
 
       <div className="filter-bar__field filter-bar__field--button">
         <button type="button" className="filter-bar__button" onClick={onFetchExternal}>
-          Buscar externos
+          Buscar API
         </button>
       </div>
     </section>

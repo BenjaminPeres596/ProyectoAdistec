@@ -106,67 +106,84 @@ function Home() {
 
   return (
     <main className="home">
-      <h1 className="home__title">Equipos de Futbol</h1>
-
-      <FilterBar
-        filters={filters}
-        onChange={setFilters}
-        onFetchExternal={handleFetchExternal}
-        countryOptions={countryOptions}
-      />
-
-      <section className="stats-wrap" aria-label="Estadisticas generales">
-        <div className="section-header">
-          <h2 className="section-title">Estadisticas</h2>
+      <header className="home__hero">
+        <div className="home__hero-inner">
+          <p className="home__eyebrow">Explorador de datos</p>
+          <h1 className="home__title">Equipos de Futbol</h1>
+          <p className="home__subtitle">Busca, filtra y explora equipos desde archivos JSON y una API externa.</p>
         </div>
-        <StatsPanel stats={dynamicStats} />
-      </section>
+      </header>
 
-      <section className="local-section" aria-label="Equipos locales">
-        <div className="section-header">
-          <h2 className="section-title">Equipos JSON</h2>
-        </div>
+      <div className="home__container">
+        <FilterBar
+          filters={filters}
+          onChange={setFilters}
+          onFetchExternal={handleFetchExternal}
+          countryOptions={countryOptions}
+        />
 
-        {loading && <p className="home__status">Cargando equipos...</p>}
-        {error && <p className="home__status home__status--error">Error locales: {error}</p>}
-
-        {!loading && !error && (
-          <div className="team-grid">
-            {teams.length === 0 ? (
-              <p className="home__status">No se encontraron equipos con esos filtros.</p>
-            ) : (
-              teams.map((team) => <TeamCard key={team.id} team={team} />)
-            )}
+        <section className="section stats-wrap" aria-label="Estadisticas generales">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">Resumen general</h2>
+              <p className="section-copy">Totales combinados, favoritos del JSON y distribucion por pais.</p>
+            </div>
           </div>
-        )}
-      </section>
+          <StatsPanel stats={dynamicStats} />
+        </section>
 
-      <section className="external-section" aria-label="Equipos externos">
-        <div className="section-header">
-          <h2 className="section-title">Equipos API</h2>
-        </div>
-
-        {externalLoading && <p className="home__status">Cargando externos...</p>}
-        {externalError && (
-          <p className="home__status home__status--error">Error externos: {externalError}</p>
-        )}
-
-        {externalNoCountry && (
-          <p className="home__status home__status--info">Selecciona un país para buscar equipos externos. La API no soporta búsqueda global sin país.</p>
-        )}
-
-        {!externalNoCountry && !externalLoading && !externalError && (
-          <div className="team-grid">
-            {externalTeams.length === 0 ? (
-              <p className="home__status">No se encontraron equipos externos.</p>
-            ) : (
-              externalTeams.map((team) => (
-                <TeamCard key={`external-${team.id ?? team.name}`} team={team} />
-              ))
-            )}
+        <section className="section local-section" aria-label="Equipos locales">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">Equipos JSON</h2>
+              <p className="section-copy">Datos locales filtrados en tiempo real desde el archivo fuente.</p>
+            </div>
           </div>
-        )}
-      </section>
+
+          {loading && <p className="home__status">Cargando equipos...</p>}
+          {error && <p className="home__status home__status--error">Error locales: {error}</p>}
+
+          {!loading && !error && (
+            <div className="team-grid">
+              {teams.length === 0 ? (
+                <p className="home__status">No se encontraron equipos con esos filtros.</p>
+              ) : (
+                teams.map((team) => <TeamCard key={team.id} team={team} />)
+              )}
+            </div>
+          )}
+        </section>
+
+        <section className="section external-section" aria-label="Equipos externos">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">Equipos API</h2>
+              <p className="section-copy">Resultados traidos desde TheSportsDB segun pais y nombre.</p>
+            </div>
+          </div>
+
+          {externalLoading && <p className="home__status">Buscando equipos API...</p>}
+          {externalError && (
+            <p className="home__status home__status--error">Error externos: {externalError}</p>
+          )}
+
+          {externalNoCountry && (
+            <p className="home__status home__status--info">Selecciona un pais para buscar equipos externos. La API no soporta busqueda global sin pais.</p>
+          )}
+
+          {!externalNoCountry && !externalLoading && !externalError && (
+            <div className="team-grid">
+              {externalTeams.length === 0 ? (
+                <p className="home__status">No se encontraron equipos externos.</p>
+              ) : (
+                externalTeams.map((team) => (
+                  <TeamCard key={`external-${team.id ?? team.name}`} team={team} />
+                ))
+              )}
+            </div>
+          )}
+        </section>
+      </div>
     </main>
   );
 }
