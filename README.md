@@ -46,7 +46,11 @@ node backend/src/app.js
 
 npm --prefix frontend run dev
 
-4. Abrir en navegador
+4. (Opcional) Ejecutar tests backend
+
+npm --prefix backend test
+
+5. Abrir en navegador
 
 http://localhost:5173
 
